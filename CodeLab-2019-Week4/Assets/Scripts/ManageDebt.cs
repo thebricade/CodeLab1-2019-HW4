@@ -66,7 +66,7 @@ public class ManageDebt : MonoBehaviour
         //split the string into 2 parts by the Space
         string[] scoreSplit = highScoreFileText.Split(' ');
         //convert string number to int number
-       // HighScore = Int32.Parse(scoreSplit[1]);
+        Score = Int32.Parse(scoreSplit[1]);
     }
 
 }
