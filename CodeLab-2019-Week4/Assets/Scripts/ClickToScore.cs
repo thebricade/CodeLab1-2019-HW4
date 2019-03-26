@@ -19,6 +19,6 @@ public class ClickToScore : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("clicked");
-        GameManager.instance.Score++;
+        ManageDebt.Instance.Score--;
     }
 }

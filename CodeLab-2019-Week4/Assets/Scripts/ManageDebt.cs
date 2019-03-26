@@ -5,12 +5,7 @@ using UnityEngine.UI;
 using System.IO;
 using System;
 
-//INTENT: Store game data to local disk
-//USAGE: Attach this to Game Man
-//Setup: add System.IO for File.WriteAllText
-//add System for Int32
-
-public class GameManger : MonoBehaviour
+public class ManageDebt : MonoBehaviour
 {
     //set score to display on Canvas
     //setup: make Canvas a child of game manager in order to carry it to the next scene
@@ -25,11 +20,14 @@ public class GameManger : MonoBehaviour
         {   
            
             score = value; 
-            scoretxt.text = "Score: " + score;
-            HighScore = score;
+            debtTotaltxt.text = "Debt: " + score;
+            string fullPathToFile = Application.dataPath + File_DEBTAMOUNT;
+            File.WriteAllText(fullPathToFile, "HighScore: " + score); //(string path, string contents)
+            //HighScore = score;
         }
     }
     private int highScore = 5;
+    /*
     public int HighScore
     {
         get{return highScore;}
@@ -40,16 +38,17 @@ public class GameManger : MonoBehaviour
                 highScore = value;
                 debtTotaltxt.text = "Debt: " + highScore;
                 //ONE WAY: PlayerPref can store data in between play sessions
-                    //PlayerPrefs.SetInt(PLAYER_PREFS_HIGHSCORE, highScore); //PlayerPref.SetInt(string key, int data)
+                //PlayerPrefs.SetInt(PLAYER_PREFS_HIGHSCORE, highScore); //PlayerPref.SetInt(string key, int data)
                     
-                    //OR THE OTHER WAY: Save player prefs file to disk
+                //OR THE OTHER WAY: Save player prefs file to disk
                 string fullPathToFile = Application.dataPath + File_DEBTAMOUNT;
                 File.WriteAllText(fullPathToFile, "HighScore: " + highScore); //(string path, string contents)
             }
         }
     }
+    */
 
-    public static GameManger Instance = null; //Set the starting instance to null
+    public static ManageDebt Instance = null; //Set the starting instance to null
     private void Awake()
     {
         //destroy the gameManager object if there's more than one instance
@@ -67,7 +66,7 @@ public class GameManger : MonoBehaviour
         //split the string into 2 parts by the Space
         string[] scoreSplit = highScoreFileText.Split(' ');
         //convert string number to int number
-        HighScore = Int32.Parse(scoreSplit[1]);
+       // HighScore = Int32.Parse(scoreSplit[1]);
     }
 
 }
